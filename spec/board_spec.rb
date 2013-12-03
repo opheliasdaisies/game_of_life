@@ -23,7 +23,7 @@ describe "Board" do
 	it "Creates a board with a dead cell in each position" do
 		board = Board.new(3,4)
 		board.create
-		board.all_cells[3][4].state.should eq("dead")
+		board.all_cells[2][3].state.should eq("dead")
 	end
 
 end
