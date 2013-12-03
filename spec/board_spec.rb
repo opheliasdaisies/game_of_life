@@ -14,7 +14,15 @@ end
 describe "Board" do
 
 	it "Creates a board with a dead cell in each position" do
-		World.new(3,4).should eq[[dead,dead,dead],[dead,dead,dead],[dead,dead,dead],[dead,dead,dead]]
+		board = Board.new(3,4)
+		game = board.create
+		game[0][0].state.should eq("dead")
+	end
+
+	it "Creates a board with a dead cell in each position" do
+		board = Board.new(3,4)
+		game = board.create
+		game[3][4].state.should eq("dead")
 	end
 
 end
