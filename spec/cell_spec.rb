@@ -24,6 +24,12 @@ describe "Cell" do
 		cell.state.should eq("alive")
 	end
 
+	it "Should know what its position is in the array" do
+		board = Board.new(3,3)
+		cell = all_cells[1][1]
+		cell.position.should eq([1,1])
+	end
+
 	it "Should detect the neighbor to the north-west" do
 		board = Board.new(3,3)
 		board.starting_move!([[1,1],[0,0]])
