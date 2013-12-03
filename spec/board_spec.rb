@@ -26,18 +26,6 @@ describe "Board" do
 		board.all_cells[2][3].state.should eq("dead")
 	end
 
-	it "Allows array of starting positions to be called by x and y" do
-		board = Board.new(3,4)
-		board.starting_move!([[1,2],[0,3]])
-		array_y = []
-		array_x = []
-		board.live_cells.each do |position|
-			array_y << position.y
-			array_x << position.x
-		end
-		[array_y,array_x].should eq([[1,0],[2,3]])
-	end
-
 	it "Changes starting positions to 'alive'" do
 		board = Board.new(3,4)
 		board.create
