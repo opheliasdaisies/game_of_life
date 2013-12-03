@@ -27,7 +27,8 @@ describe "Cell" do
 	it "Should detect the neighbor to the north-west" do
 		board = Board.new(3,3)
 		board.starting_move!([[1,1],[0,0]])
-		all_cells[1][1].find_neighbors
+		cell = board.all_cells[1][1]
+		cell.find_neighbors(board)
 		neighbors.count.should eq(1)
 	end
 
