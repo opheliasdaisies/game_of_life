@@ -19,16 +19,16 @@ class Board
 	end
 
 	def starting_move!(array)
-		@live_cells = starter(array)
-		live_cells.each do |coordinates|
-			all_cells[coordinates.y][coordinates.x].state = "alive"
+		@live_cells = coordinates(array)
+		live_cells.each do |coordinate|
+			all_cells[coordinate.y][coordinate.x].state = "alive"
 		end
 	end
 
-	Living = Struct.new(:y, :x)
-	def starter(array)
+	Position = Struct.new(:y, :x)
+	def coordinates(array)
 		array.collect do |item|
-			Living.new(item[0], item[1])
+			Position.new(item[0], item[1])
 		end
 	end
 
