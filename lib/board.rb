@@ -9,7 +9,12 @@ class Board
 	end
 
 	def create
-				
+		height.times do
+			all_cells << []
+		end
+		all_cells.each do |empty_nest|
+			width.times {empty_nest << Cell.new}
+		end
 	end
 
 end
