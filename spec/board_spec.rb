@@ -16,19 +16,16 @@ describe "Board" do
 
 	it "Creates a board with a dead cell in each position" do
 		board = Board.new(3,4)
-		board.create
 		board.all_cells[0][0].state.should eq("dead")
 	end
 
 	it "Creates a board with a dead cell in each position" do
 		board = Board.new(3,4)
-		board.create
 		board.all_cells[2][3].state.should eq("dead")
 	end
 
 	it "Changes starting positions to 'alive'" do
 		board = Board.new(3,4)
-		board.create
 		board.starting_move!([[1,1],[2,1]])
 		board.all_cells[1][1].state.should eq("alive")
 	end

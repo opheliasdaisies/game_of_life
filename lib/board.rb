@@ -5,15 +5,17 @@ class Board
 	def initialize(height, width)
 		@height = height
 		@width = width
-		@all_cells = []
+		@all_cells = create
 		
 	end
 
 	def create
-		height.times { all_cells << [] }
-		all_cells.each do |empty_nest|
+		array = []
+		height.times { array << [] }
+		array.each do |empty_nest|
 			width.times {empty_nest << Cell.new}
 		end
+		array
 	end
 
 	def starting_move!(array)
