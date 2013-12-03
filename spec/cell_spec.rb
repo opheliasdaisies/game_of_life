@@ -26,7 +26,8 @@ describe "Cell" do
 
 	it "Should know what its position is in the array" do
 		board = Board.new(3,3)
-		cell = all_cells[1][1]
+		cell = board.all_cells[1][1]
+		cell.find_position(board)
 		cell.position.should eq([1,1])
 	end
 
