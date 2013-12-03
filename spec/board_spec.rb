@@ -27,7 +27,8 @@ describe "Board" do
 	end
 
 	it "Allows array of starting positions to be called by x and y" do
-		board = Board.new(3,4,[[1,2],[0,3]])
+		board = Board.new(3,4)
+		board.starting_move!([[1,2],[0,3]])
 		array_y = []
 		array_x = []
 		board.live_cells.each do |position|
@@ -38,10 +39,10 @@ describe "Board" do
 	end
 
 	it "Changes starting positions to 'alive'" do
-		board = Board.new(3,4,[[1,1],[1,3]])
+		board = Board.new(3,4)
 		board.create
-		board.starting_move!(live_cells)
-		all_cells[1,1].state.should eq("alive")
+		board.starting_move!([[1,1],[2,1]])
+		board.all_cells[1][1].state.should eq("alive")
 	end
 
 
