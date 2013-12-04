@@ -38,4 +38,18 @@ describe "Board" do
 		cell.state.should eq("dead")
 	end
 
+	it "Refreshes the board with the new set of live/dead cells" do
+		board = Board.new(4,4)
+		board.starting_move!([[0,0],[0,2],[0,3],[1,1],[1,2],[1,3],[2,2]])
+		board.tick
+		live_cells = []
+		board.all_cells.each do |row|
+			row.each do |cell|
+				live_cells << cell if cell.state == "alive"
+			end
+		end
+		live_cells.count.should eq(4)
+	end
+
+
 end
