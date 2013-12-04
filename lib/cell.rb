@@ -57,8 +57,12 @@ class Cell
 		self.state = "alive"
 	end
 
-	def starvation!
+	def under_population!
 		die! if neighbors.count < 2
+	end
+
+	def overcrowding!
+		die! if neighbors.count > 3
 	end
 
 end
