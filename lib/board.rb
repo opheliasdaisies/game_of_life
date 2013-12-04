@@ -28,7 +28,8 @@ class Board
 
 	def tick!
 		to_die.each { |cell_to_kill| cell_to_kill.die! }
-		to_live.each { |cell_to_live| cell_to_live.live!}
+		to_live.each { |cell_to_live| cell_to_live.live! }
+		self
 	end
 
 	Position = Struct.new(:y, :x)
