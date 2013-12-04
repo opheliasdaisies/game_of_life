@@ -88,7 +88,7 @@ describe "Cell" do
 		board = Board.new(3,3)
 		board.starting_move!([1,1])
 		cell = board.all_cells[1][1]
-		cell.under-population!
+		cell.under_population!
 		cell.state.should eq("dead")
 	end
 
