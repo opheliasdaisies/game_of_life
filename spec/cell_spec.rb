@@ -39,6 +39,38 @@ describe "Cell" do
 		cell.neighbors.count.should eq(1)
 	end
 
+	it "Should detect the neighbor to the north" do
+		board = Board.new(3,3)
+		board.starting_move!([[1,1],[0,1]])
+		cell = board.all_cells[1][1]
+		cell.find_neighbors(board)
+		cell.neighbors.count.should eq(1)
+	end
+
+	it "Should detect the neighbor to the north-east" do
+		board = Board.new(3,3)
+		board.starting_move!([[1,1],[0,2]])
+		cell = board.all_cells[1][1]
+		cell.find_neighbors(board)
+		cell.neighbors.count.should eq(1)
+	end
+
+	it "Should detect the neighbors to the east and west" do
+		board = Board.new(3,3)
+		board.starting_move!([[1,1],[1,0],[1,2]])
+		cell = board.all_cells[1][1]
+		cell.find_neighbors(board)
+		cell.neighbors.count.should eq(2)
+	end
+
+	it "Should detect the neighbors to the south, south-east, and south-west" do
+		board = Board.new(3,3)
+		board.starting_move!([[1,1],[2,0],[2,1],[2,2]])
+		cell = board.all_cells[1][1]
+		cell.find_neighbors(board)
+		cell.neighbors.count.should eq(3)
+	end
+
 	# it "Rule 1: Any live cell with fewer than two live neighbours dies, as if caused by under-population." do
 
 	# end
