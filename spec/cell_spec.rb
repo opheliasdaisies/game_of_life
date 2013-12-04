@@ -36,7 +36,7 @@ describe "Cell" do
 		board.starting_move!([[1,1],[0,0]])
 		cell = board.all_cells[1][1]
 		cell.find_neighbors(board)
-		neighbors.count.should eq(1)
+		cell.neighbors.count.should eq(1)
 	end
 
 	# it "Rule 1: Any live cell with fewer than two live neighbours dies, as if caused by under-population." do
