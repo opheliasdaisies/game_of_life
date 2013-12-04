@@ -57,5 +57,9 @@ class Cell
 		self.state = "alive"
 	end
 
+	def starvation!
+		die! if neighbors.count < 2
+	end
+
 end
 
