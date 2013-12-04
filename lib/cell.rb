@@ -9,30 +9,24 @@ class Cell
 
 	def find_neighbors(board)
 		find_position(board)
-		if board.all_cells[row-1][column-1].state == "alive"
-			neighbors << board.all_cells[row][column]
+		does_neighbor_exist(board, row-1, column-1)
+		does_neighbor_exist(board, row-1, column)
+		does_neighbor_exist(board, row-1, column+1)
+		does_neighbor_exist(board, row, column-1)
+		does_neighbor_exist(board, row, column+1)
+		does_neighbor_exist(board, row+1, column-1)
+		does_neighbor_exist(board, row+1, column)
+		does_neighbor_exist(board, row+1, column+1)
+	end
+
+	def does_neighbor_exist(board, neighbor_row, neighbor_column)
+		return if board.all_cells[neighbor_row] == nil
+		if board.all_cells[neighbor_row][neighbor_column] == nil
+			return 
+		else
+			location = board.all_cells[neighbor_row][neighbor_column]
 		end
-		if board.all_cells[row-1][column].state == "alive"
-			neighbors << board.all_cells[row][column]
-		end
-		if board.all_cells[row-1][column+1].state == "alive"
-			neighbors << board.all_cells[row][column]
-		end
-		if board.all_cells[row][column-1].state == "alive"
-			neighbors << board.all_cells[row][column]
-		end
-		if board.all_cells[row][column+1].state == "alive"
-			neighbors << board.all_cells[row][column]
-		end
-		if board.all_cells[row+1][column-1].state == "alive"
-			neighbors << board.all_cells[row][column]
-		end
-		if board.all_cells[row+1][column].state == "alive"
-			neighbors << board.all_cells[row][column]
-		end
-		if board.all_cells[row+1][column+1].state == "alive"
-			neighbors << board.all_cells[row][column]
-		end
+		neighbors << location if location.state == "alive"
 	end
 
 	def find_position(board)
