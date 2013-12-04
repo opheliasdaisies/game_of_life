@@ -135,4 +135,12 @@ describe "Cell" do
 		cell.state.should eq("alive")
 	end
 
+	it "Evaluates a cell if fewer than 8 neighbors exist" do
+		board = Board.new(1,2)
+		board.starting_move!([[0,0]])
+		cell = board.all_cells[0][0]
+		cell.evaluate_cell!(board)
+		cell.state.should eq("dead")
+	end
+
 end
