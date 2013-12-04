@@ -28,7 +28,7 @@ describe "Cell" do
 		board = Board.new(3,3)
 		cell = board.all_cells[1][1]
 		cell.find_position(board)
-		cell.position.should eq([1,1])
+		cell.row.should eq(1)
 	end
 
 	it "Should detect the neighbor to the north-west" do

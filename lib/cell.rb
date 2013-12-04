@@ -1,6 +1,6 @@
 class Cell
 	attr_accessor :state, :neighbors
-	attr_reader :position
+	attr_reader :row, :column
 
 	def initialize(state="dead")
 		@state = state
@@ -9,9 +9,7 @@ class Cell
 
 	def find_neighbors(board)
 		find_position(board)
-		row = position[0] -1
-		column = position[1] -1
-		if board.all_cells[row][column].state == "alive"
+		if board.all_cells[row-1][column-1].state == "alive"
 			neighbors << board.all_cells[row][column]
 		end
 	end
@@ -26,7 +24,8 @@ class Cell
 				end
 			end
 		end
-		@position = coords
+		@row = coords[0]
+		@column = coords[1]
 	end
 
 end
