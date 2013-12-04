@@ -88,7 +88,28 @@ describe "Cell" do
 		board = Board.new(3,3)
 		board.starting_move!([1,1])
 		cell = board.all_cells[1][1]
+		cell.find_neighbors(board)
 		cell.under_population!
+		cell.state.should eq("dead")
+	end
+
+	it "Rule 2: Any live cell with two or three live neighbours lives on to the next generation." do
+		board = Board.new(3,3)
+		board.starting_move!([[1,1],[0,1],[2,2]])
+		cell = board.all_cells[1][1]
+		cell.find_neighbors(board)
+		cell.under_population!
+		cell.overcrowding!
+		cell.zombify!
+		cell.state.should eq("alive")
+	end
+
+	it "Rule 3: Any live cell with more than three live neighbours dies, as if by overcrowding." do
+		board = Board.new(3,3)
+		board.starting_move!([[1,1],[0,0],[1,0],[2,1],[2,2]])
+		cell = board.all_cells[1][1]
+		cell.find_neighbors(board)
+		cell.overcrowding!
 		cell.state.should eq("dead")
 	end
 
