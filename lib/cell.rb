@@ -12,6 +12,27 @@ class Cell
 		if board.all_cells[row-1][column-1].state == "alive"
 			neighbors << board.all_cells[row][column]
 		end
+		if board.all_cells[row-1][column].state == "alive"
+			neighbors << board.all_cells[row][column]
+		end
+		if board.all_cells[row-1][column+1].state == "alive"
+			neighbors << board.all_cells[row][column]
+		end
+		if board.all_cells[row][column-1].state == "alive"
+			neighbors << board.all_cells[row][column]
+		end
+		if board.all_cells[row][column+1].state == "alive"
+			neighbors << board.all_cells[row][column]
+		end
+		if board.all_cells[row+1][column-1].state == "alive"
+			neighbors << board.all_cells[row][column]
+		end
+		if board.all_cells[row+1][column].state == "alive"
+			neighbors << board.all_cells[row][column]
+		end
+		if board.all_cells[row+1][column+1].state == "alive"
+			neighbors << board.all_cells[row][column]
+		end
 	end
 
 	def find_position(board)
