@@ -30,6 +30,12 @@ describe "Board" do
 		board.all_cells[1][1].state.should eq("alive")
 	end
 
-
+	it "Refreshes the board with the new set of live/dead cells" do
+		board = Board.new(3,3)
+		board.starting_move!([1,1])
+		cell = all_cells[1][1]
+		board.tick
+		cell.state.should eq("dead")
+	end
 
 end
