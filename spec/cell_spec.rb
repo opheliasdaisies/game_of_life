@@ -89,8 +89,8 @@ describe "Cell" do
 		board.starting_move!([1,1])
 		cell = board.all_cells[1][1]
 		cell.find_neighbors(board)
-		cell.under_population!
-		cell.state.should eq("dead")
+		cell.under_population(board)
+		board.to_die.should eq([cell])
 	end
 
 	it "Rule 2: Any live cell with two or three live neighbours lives on to the next generation." do
@@ -98,7 +98,7 @@ describe "Cell" do
 		board.starting_move!([[1,1],[0,1],[2,2]])
 		cell = board.all_cells[1][1]
 		cell.evaluate_cell!(board)
-		cell.state.should eq("alive")
+		board.to_die.should eq([])
 	end
 
 	it "Rule 3: Any live cell with more than three live neighbours dies, as if by overcrowding." do
@@ -106,8 +106,8 @@ describe "Cell" do
 		board.starting_move!([[1,1],[0,0],[1,0],[2,1],[2,2]])
 		cell = board.all_cells[1][1]
 		cell.find_neighbors(board)
-		cell.overcrowding!
-		cell.state.should eq("dead")
+		cell.overcrowding(board)
+		board.to_die.should eq([cell])
 	end
 
 	it "Rule 4: Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction." do
@@ -115,8 +115,8 @@ describe "Cell" do
 		board.starting_move!([[0,0],[1,0],[2,1]])
 		cell = board.all_cells[1][1]
 		cell.find_neighbors(board)
-		cell.zombify!
-		cell.state.should eq("alive")
+		cell.zombify(board)
+		board.to_live.should eq([cell])
 	end
 
 	it "Evaluates a cell to determine if it should live or die" do
@@ -124,7 +124,7 @@ describe "Cell" do
 		board.starting_move!([[1,1],[0,0],[1,0],[2,1],[2,2]])
 		cell = board.all_cells[1][1]
 		cell.evaluate_cell!(board)
-		cell.state.should eq("dead")
+		board.to_die.should eq([cell])
 	end
 
 	it "Evaluates a cell to determine if it should live or die" do
@@ -132,7 +132,7 @@ describe "Cell" do
 		board.starting_move!([[0,0],[1,0],[2,1]])
 		cell = board.all_cells[1][1]
 		cell.evaluate_cell!(board)
-		cell.state.should eq("alive")
+		board.to_live.should eq([cell])
 	end
 
 	it "Evaluates a cell if fewer than 8 neighbors exist" do
@@ -140,7 +140,7 @@ describe "Cell" do
 		board.starting_move!([[0,0]])
 		cell = board.all_cells[0][0]
 		cell.evaluate_cell!(board)
-		cell.state.should eq("dead")
+		board.to_die.should eq([cell])
 	end
 
 end

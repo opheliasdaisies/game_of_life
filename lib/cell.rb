@@ -51,23 +51,23 @@ class Cell
 		self.state = "alive"
 	end
 
-	def under_population!
-		die! if neighbors.count < 2
+	def under_population(board)
+		board.to_die << self if neighbors.count < 2
 	end
 
-	def overcrowding!
-		die! if neighbors.count > 3
+	def overcrowding(board)
+		board.to_die << self if neighbors.count > 3
 	end
 
-	def zombify!
-		live! if neighbors.count == 3
+	def zombify(board)
+		board.to_live << self if neighbors.count == 3
 	end
 
 	def evaluate_cell!(board)
 		find_neighbors(board)
-		under_population!
-		overcrowding!
-		zombify!
+		under_population(board)
+		overcrowding(board)
+		zombify(board)
 	end
 
 end
