@@ -113,4 +113,13 @@ describe "Cell" do
 		cell.state.should eq("dead")
 	end
 
+	it "Rule 4: Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction." do
+		board = Board.new(3,3)
+		board.starting_move!([[0,0],[1,0],[2,1]])
+		cell = board.all_cells[1][1]
+		cell.find_neighbors(board)
+		cell.zombify!
+		cell.state.should eq("alive")
+	end
+
 end

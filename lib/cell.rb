@@ -65,5 +65,9 @@ class Cell
 		die! if neighbors.count > 3
 	end
 
+	def zombify!
+		live! if neighbors.count == 3
+	end
+
 end
 
