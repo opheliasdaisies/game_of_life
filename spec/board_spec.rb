@@ -33,7 +33,7 @@ describe "Board" do
 	it "Refreshes the board with the new set of live/dead cells" do
 		board = Board.new(3,3)
 		board.starting_move!([1,1])
-		board.tick
+		board.tick!
 		cell = board.all_cells[1][1]
 		cell.state.should eq("dead")
 	end
@@ -41,7 +41,7 @@ describe "Board" do
 	it "Refreshes the board with the new set of live/dead cells" do
 		board = Board.new(4,4)
 		board.starting_move!([[0,0],[0,2],[0,3],[1,1],[1,2],[1,3],[2,2]])
-		board.tick
+		board.tick!
 		live_cells = []
 		board.all_cells.each do |row|
 			row.each do |cell|
