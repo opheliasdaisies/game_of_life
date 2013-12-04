@@ -97,10 +97,7 @@ describe "Cell" do
 		board = Board.new(3,3)
 		board.starting_move!([[1,1],[0,1],[2,2]])
 		cell = board.all_cells[1][1]
-		cell.find_neighbors(board)
-		cell.under_population!
-		cell.overcrowding!
-		cell.zombify!
+		cell.evaluate_cell!(board)
 		cell.state.should eq("alive")
 	end
 
@@ -119,6 +116,22 @@ describe "Cell" do
 		cell = board.all_cells[1][1]
 		cell.find_neighbors(board)
 		cell.zombify!
+		cell.state.should eq("alive")
+	end
+
+	it "Evaluates a cell to determine if it should live or die" do
+		board = Board.new(3,3)
+		board.starting_move!([[1,1],[0,0],[1,0],[2,1],[2,2]])
+		cell = board.all_cells[1][1]
+		cell.evaluate_cell!(board)
+		cell.state.should eq("dead")
+	end
+
+	it "Evaluates a cell to determine if it should live or die" do
+		board = Board.new(3,3)
+		board.starting_move!([[0,0],[1,0],[2,1]])
+		cell = board.all_cells[1][1]
+		cell.evaluate_cell!(board)
 		cell.state.should eq("alive")
 	end
 

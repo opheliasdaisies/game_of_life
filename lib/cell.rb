@@ -69,5 +69,12 @@ class Cell
 		live! if neighbors.count == 3
 	end
 
+	def evaluate_cell!(board)
+		find_neighbors(board)
+		under_population!
+		overcrowding!
+		zombify!
+	end
+
 end
 
