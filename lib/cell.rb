@@ -49,5 +49,13 @@ class Cell
 		@column = coords[1]
 	end
 
+	def die!
+		self.state = "dead"
+	end
+
+	def live!
+		self.state = "alive"
+	end
+
 end
 

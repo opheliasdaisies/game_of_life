@@ -71,8 +71,24 @@ describe "Cell" do
 		cell.neighbors.count.should eq(3)
 	end
 
-	# it "Rule 1: Any live cell with fewer than two live neighbours dies, as if caused by under-population." do
+	it "Should kill a living cell" do
+		cell = Cell.new
+		cell.state = "alive"
+		cell.die!
+		cell.state.should eq("dead")
+	end
 
-	# end
+	it "Should make a dead cell alive" do
+		cell = Cell.new
+		cell.live!
+		cell.state.should eq("alive")
+	end
+
+	it "Rule 1: Any live cell with fewer than two live neighbours dies, as if caused by under-population." do
+		board = Board.new(3,3)
+		board.starting_move!([1,1])
+		cell = board.all_cells[1][1]
+		cell.starvation
+	end
 
 end
