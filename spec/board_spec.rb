@@ -34,7 +34,7 @@ describe "Board" do
 		board = Board.new(3,3)
 		board.starting_move!([1,1])
 		board.tick
-		cell = "alive"
+		cell = board.all_cells[1][1]
 		cell.state.should eq("dead")
 	end
 
