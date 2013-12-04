@@ -8,7 +8,12 @@ class Cell
 	end
 
 	def find_neighbors(board)
-		
+		find_position(board)
+		row = position[0] -1
+		column = position[1] -1
+		if board.all_cells[row][column].state == "alive"
+			neighbors << board.all_cells[row][column]
+		end
 	end
 
 	def find_position(board)
