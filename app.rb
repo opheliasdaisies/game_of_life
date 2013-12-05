@@ -16,11 +16,12 @@ end
 
 
 starting_array = [[4,4],[4,5],[4,7],[5,4],[5,5],[6,6]]
-game = Board.new(10, 15)
+game = Board.new(12, 20)
 game.starting_move!(starting_array)
 visualize(game.all_cells)
-5.times do
+50.times do
 	game.evaluate_all
 	game.tick!
 	visualize(game.all_cells)
+	sleep(1)
 end
