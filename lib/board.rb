@@ -1,13 +1,11 @@
 class Board
 	attr_reader :height, :width
-	attr_accessor :all_cells, :live_cells, :to_die, :to_live, :new_cells
+	attr_accessor :all_cells, :live_cells, :new_cells
 
 	def initialize(height, width)
 		@height = height
 		@width = width
 		@all_cells = create
-		@to_die = []
-		@to_live = []
 	end
 
 	def create

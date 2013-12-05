@@ -30,35 +30,6 @@ describe "Board" do
 		board.all_cells[1][1].state.should eq("alive")
 	end
 
-	it "Should contain an array of the cells that should become alive" do
-		board = Board.new(3,3)
-		board.starting_move!([[1,1]])
-		board.evaluate_all
-		board.to_live.should eq([])
-	end
-
-	it "Should contain an array of the cells that should become dead" do
-		board = Board.new(3,3)
-		board.starting_move!([[1,1]])
-		cell = board.all_cells[1][1]
-		board.evaluate_all
-		board.to_die.should eq([cell])
-	end
-
-	it "Should contain an array of the cells that should become alive" do
-		board = Board.new(3,3)
-		board.starting_move!([[0,2],[1,0],[1,1]])
-		board.evaluate_all
-		board.to_live.should eq([board.all_cells[0][1]])
-	end
-
-	it "Should contain an array of the cells that should become dead" do
-		board = Board.new(3,3)
-		board.starting_move!([[0,2],[1,0],[1,1]])
-		board.evaluate_all
-		board.to_die.should eq([board.all_cells[0][2], board.all_cells[1][0]])
-	end
-
 	it "Refreshes the board with the new set of live/dead cells" do
 		board = Board.new(3,3)
 		board.starting_move!([[1,1]])
