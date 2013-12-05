@@ -42,13 +42,15 @@ describe "Board" do
 		board = Board.new(4,4)
 		board.starting_move!([[0,0],[0,2],[0,3],[1,1],[1,2],[1,3],[2,2]])
 		board.tick!
-		live_cells = []
+		cells_to_be_alive = []
 		board.all_cells.each do |row|
 			row.each do |cell|
-				live_cells << cell if cell.state == "alive"
+				if cell.state == "alive"
+					cells_to_be_alive << cell 
+				end
 			end
 		end
-		live_cells.count.should eq(4)
+		cells_to_be_alive.count.should eq(4)
 	end
 
 

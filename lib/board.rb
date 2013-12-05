@@ -1,6 +1,6 @@
 class Board
 	attr_reader :height, :width
-	attr_accessor :all_cells, :live_cells, :to_die, :to_live
+	attr_accessor :all_cells, :live_cells, :to_die, :to_live, :new_cells
 
 	def initialize(height, width)
 		@height = height
@@ -26,10 +26,32 @@ class Board
 		end
 	end
 
+	def evaluate_all
+		all_cells.each do |row|
+			row.each {|cell| cell.evaluate_cell(self)}
+		end	
+	end
+
 	def tick!
-		to_die.each { |cell_to_kill| cell_to_kill.die! }
-		to_live.each { |cell_to_live| cell_to_live.live! }
-		self
+		evaluate_all
+		@new_cells = []
+		all_cells.each do |row|
+			empty_nest = []
+			row.each do |cell|
+				to_die.each do |cell_to_die|
+					cell.die! if cell == cell_to_die
+				end
+				to_live.each do |cell_to_live|
+					cell.live! if cell == cell_to_live
+				end
+				empty_nest << cell
+			end
+			new_cells << empty_nest
+		end
+		# to_die.map { |cell_to_kill| cell_to_kill.die! }
+		# to_live.map { |cell_to_live| cell_to_live.live! }
+		# self
+		all_cells = new_cells
 	end
 
 	Position = Struct.new(:y, :x)
