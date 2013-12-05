@@ -1,10 +1,11 @@
 class Cell
-	attr_accessor :state, :neighbors
+	attr_accessor :state, :neighbors, :staged
 	attr_reader :row, :column
 
 	def initialize(state="dead")
 		@state = state
 		@neighbors = []
+		@staged
 	end
 
 	def find_neighbors(board)
@@ -52,23 +53,23 @@ class Cell
 	end
 
 	def under_population(board)
-		board.to_die << self if self.state == "alive" && neighbors.count < 2
+		self.staged = "die" if self.state == "alive" && self.neighbors.count < 2
 	end
 
 	def overcrowding(board)
-		board.to_die << self if self.state == "alive" && neighbors.count > 3
+		self.staged = "die" if self.state == "alive" && self.neighbors.count > 3
 	end
 
 	def zombify(board)
-		board.to_live << self if self.state == "dead" && neighbors.count == 3
+		self.staged = "live" if self.state == "dead" && self.neighbors.count == 3
 	end
 
-	def stagnate(board)
-		if neighbors.count == 2
-			board.to_live << self if state == "alive"
-			board.to_die << self if state == "dead"
-		end
-	end
+	# def stagnate(board)
+	# 	if neighbors.count == 2
+	# 		board.to_live << self if state == "alive"
+	# 		board.to_die << self if state == "dead"
+	# 	end
+	# end
 
 	def evaluate_cell(board)
 		find_neighbors(board)
