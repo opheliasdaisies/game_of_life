@@ -61,7 +61,7 @@ describe "Board" do
 
 	it "Refreshes the board with the new set of live/dead cells" do
 		board = Board.new(3,3)
-		board.starting_move!([1,1])
+		board.starting_move!([[1,1]])
 		board.evaluate_all
 		board.tick!
 		cell = board.all_cells[1][1]
