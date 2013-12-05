@@ -32,14 +32,14 @@ describe "Board" do
 
 	it "Should contain an array of the cells that should become alive" do
 		board = Board.new(3,3)
-		board.starting_move!([1,1])
+		board.starting_move!([[1,1]])
 		board.evaluate_all
 		board.to_live.should eq([])
 	end
 
 	it "Should contain an array of the cells that should become dead" do
 		board = Board.new(3,3)
-		board.starting_move!([1,1])
+		board.starting_move!([[1,1]])
 		cell = board.all_cells[1][1]
 		board.evaluate_all
 		board.to_die.should eq([cell])
