@@ -40,20 +40,38 @@ describe "Board" do
 	end
 
 	it "Refreshes the board with the new set of live/dead cells" do
-		board = Board.new(4,4)
-		board.starting_move!([[0,0],[0,2],[0,3],[1,1],[1,2],[1,3],[2,2]])
+		board = Board.new(5,5)
+		board.starting_move!([[0,0],[1,2],[2,2],[2,3],[3,1],[3,2],[3,3]])
 		board.evaluate_all
 		board.tick!
-		cells_to_be_alive = []
+		live_count = 0
 		board.all_cells.each do |row|
 			row.each do |cell|
 				if cell.state == "alive"
-					cells_to_be_alive << cell 
+					live_count += 1
 				end
 			end
 		end
-		cells_to_be_alive.count.should eq(4)
+		live_count.should eq(6)
+	end
+
+	it "Refreshes the board with the new set of live/dead cells" do
+		board = Board.new(5,5)
+		board.starting_move!([[0,0],[1,2],[2,2],[2,3],[3,1],[3,2],[3,3]])
+		board.evaluate_all
+		board.tick!
+		dead_count = 0
+		board.all_cells.each do |row|
+			row.each do |cell|
+				if cell.state == "dead"
+					dead_count += 1
+				end
+			end
+		end
+		dead_count.should eq(19)
 	end
 
 
 end
+
+# board.starting_move!([[0,0],[1,2],[2,2],[2,3],[3,1],[3,2],[3,3]])
