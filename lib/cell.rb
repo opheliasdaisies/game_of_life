@@ -78,5 +78,10 @@ class Cell
 		zombify(board)
 	end
 
+	def clear_staging
+		self.staged = ""
+		self.neighbors = []
+	end
+
 end
 
