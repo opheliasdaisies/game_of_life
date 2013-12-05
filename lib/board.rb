@@ -34,10 +34,10 @@ class Board
 		all_cells.each do |row|
 			row.each do |cell|
 				if cell.staged == "die"
-					cell.state = "dead"
+					cell.die!
 					cell.staged = nil
 				elsif cell.staged == "live"
-					cell.state = "alive"
+					cell.live!
 					cell.staged = nil
 				else
 					cell.state
