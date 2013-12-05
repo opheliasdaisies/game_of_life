@@ -86,7 +86,7 @@ describe "Cell" do
 
 	it "Rule 1: Any live cell with fewer than two live neighbours dies, as if caused by under-population." do
 		board = Board.new(3,3)
-		board.starting_move!([1,1])
+		board.starting_move!([[1,1]])
 		cell = board.all_cells[1][1]
 		cell.find_neighbors(board)
 		cell.under_population(board)
