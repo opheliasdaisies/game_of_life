@@ -35,8 +35,10 @@ class Board
 			row.each do |cell|
 				if cell.staged == "die"
 					cell.state = "dead"
+					cell.staged = nil
 				elsif cell.staged == "live"
 					cell.state = "alive"
+					cell.staged = nil
 				else
 					cell.state
 				end
