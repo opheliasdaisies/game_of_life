@@ -97,7 +97,7 @@ describe "Cell" do
 		board = Board.new(3,3)
 		board.starting_move!([[1,1],[0,1],[2,2]])
 		cell = board.all_cells[1][1]
-		cell.evaluate_cell!(board)
+		cell.evaluate_cell(board)
 		board.to_die.should eq([])
 	end
 
@@ -123,7 +123,7 @@ describe "Cell" do
 		board = Board.new(3,3)
 		board.starting_move!([[1,1],[0,0],[1,0],[2,1],[2,2]])
 		cell = board.all_cells[1][1]
-		cell.evaluate_cell!(board)
+		cell.evaluate_cell(board)
 		board.to_die.should eq([cell])
 	end
 
@@ -131,7 +131,7 @@ describe "Cell" do
 		board = Board.new(3,3)
 		board.starting_move!([[0,0],[1,0],[2,1]])
 		cell = board.all_cells[1][1]
-		cell.evaluate_cell!(board)
+		cell.evaluate_cell(board)
 		board.to_live.should eq([cell])
 	end
 
@@ -139,7 +139,7 @@ describe "Cell" do
 		board = Board.new(1,2)
 		board.starting_move!([[0,0]])
 		cell = board.all_cells[0][0]
-		cell.evaluate_cell!(board)
+		cell.evaluate_cell(board)
 		board.to_die.should eq([cell])
 	end
 
